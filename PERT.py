@@ -1,18 +1,29 @@
 from typing import List
 
 
+# maps = [
+#     [0, [0, 3, 250, 0], [0, 2, 500, 0], 0, [0, 5, 600, 0], 0, 0],
+#     [0, 0, 0, 0, [0, 0, 0, 0], [0, 3, 350, 0], 0],
+#     [0, 0, 0, [0, 4, 400, 0], 0, 0, [0, 4, 200, 0]],
+#     [0, 0, 0, 0, 0, 0,  [0, 2, 700, 0]],
+#     [0, 0, 0, 0, 0,  [0, 6, 450, 1000], 0],
+#     [0, 0, 0, 0, 0, 0, [0, 3, 700, 5000]],
+#     [0, 0, 0, 0, 0, 0, 0]
+# ]
+
 maps = [
-    [0, [0, 3, 250, 0], [0, 2, 500, 0], 0, [0, 5, 600, 0], 0, 0],
-    [0, 0, 0, 0, [0, 0, 0, 0], [0, 3, 350, 0], 0],
-    [0, 0, 0, [0, 4, 400, 0], 0, 0, [0, 4, 200, 0]],
-    [0, 0, 0, 0, 0, 0,  [0, 2, 700, 0]],
-    [0, 0, 0, 0, 0,  [0, 6, 450, 1000], 0],
-    [0, 0, 0, 0, 0, 0, [0, 3, 700, 5000]],
+    [0, [0, 3, -700, 0], 0, [0, 2, -700, 0], [0, 4, -200, 0], 0, 0],
+    [0, 0, [0, 6, -450, -5000], 0, 0, [0, 3, -350, 0], 0],
+    [0, 0, 0, 0, 0, [0, 0, 0, 0], [0, 5, -600, -1000]],
+    [0, 0, 0, 0, [0, 4, -400, 0], 0, 0],
+    [0, 0, 0, 0, 0, 0, [0, 2, -500, 0]],
+    [0, 0, 0, 0, 0, 0, [0, 3, -250, 0]],
     [0, 0, 0, 0, 0, 0, 0]
 ]
 
 time = 0
-money = 4500
+# money = 4500
+money = 1100
 
 
 def isend() -> bool:
@@ -82,16 +93,20 @@ def simulate():
     global time
     global money
     global maps
+    # first_paths = [maps[0][1]]
+    # second_paths = [maps[0][2]]
+    # third_paths = [maps[0][4]]
     first_paths = [maps[0][1]]
-    second_paths = [maps[0][2]]
+    second_paths = [maps[0][3]]
     third_paths = [maps[0][4]]
     paths = [first_paths, second_paths, third_paths]
     while isend() == False and time <= 20:
         time += 1
         if time == 8:
-            money += 5000
-        if time == 15:
-            money += 16000
+            # money += 5000
+            money -= 5000
+        # if time == 15:
+        #     money += 16000
         check_merge(first_paths, second_paths)
         check_merge(first_paths, third_paths)
         check_merge(second_paths, third_paths)
